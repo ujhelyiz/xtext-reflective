@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+        point="org.eclipse.ui.editors">
+     <editor
+           class="org.eclipse.xtext.ui.XtextExecutableExtensionFactory:org.eclipse.xtext.ui.editor.XtextEditor"
+           contributorClass="org.eclipse.emf.ecore.presentation.EcoreActionBarContributor$Reflective"
+           default="false"
+           extensions="xtext"
+           id="org.eclipse.viatra2.patternlanguage.EMFPatternLanguage.reflective"
+           name="Xtext Reflective Editor">
+     </editor>
+  </extension>
+
+</plugin>

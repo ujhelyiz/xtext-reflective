@@ -2,6 +2,7 @@ package hu.cubussapiens.xtext.reflectiveeditor.editor;
 
 import java.util.EventObject;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -18,27 +19,50 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.util.EditUIUtil;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
 import org.eclipse.xtext.resource.IResourceFactory;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
+import org.eclipse.xtext.ui.guice.AbstractGuiceAwareExecutableExtensionFactory;
+import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 
 import com.google.inject.Inject;
 
+/**
+ * An override of the EcoreEditor class that can open an Xtext model using a
+ * Guice-aware extension factory:
+ * {@link AbstractGuiceAwareExecutableExtensionFactory}.
+ * 
+ * @author Zoltan Ujhelyi
+ * 
+ */
 public class ReflectiveXtextEditor extends EcoreEditor {
 
-	// @Inject
 	ResourceSet resourceSet;
 
 	@Inject
 	IResourceFactory resourceFactory;
 	@Inject
 	IResourceServiceProvider serviceProvider;
-
 	@Inject
-	public ReflectiveXtextEditor(ResourceSet resourceSet) {
-		this.resourceSet = resourceSet;
-		initializeEditingDomain();
+	IResourceSetProvider resourceSetProvider;
 
+	public ReflectiveXtextEditor() {
+		// The method is intentionally empty to avoid calling the
+		// initializeEditingDomain before knowing the project
+	}
+
+	@Override
+	public void init(IEditorSite site, IEditorInput editorInput) {
+		super.init(site, editorInput);
+		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*",
+				resourceFactory);
+		org.eclipse.xtext.resource.IResourceServiceProvider.Registry.INSTANCE
+				.getExtensionToFactoryMap().put("*", serviceProvider);
+		IFile file = (IFile) editorInput.getAdapter(IFile.class);
+		this.resourceSet = resourceSetProvider.get(file.getProject());
+		initializeEditingDomain();
 	}
 
 	@Override
@@ -61,10 +85,6 @@ public class ReflectiveXtextEditor extends EcoreEditor {
 
 	@Override
 	public void createModelGen() {
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*",
-				resourceFactory);
-		org.eclipse.xtext.resource.IResourceServiceProvider.Registry.INSTANCE
-				.getExtensionToFactoryMap().put("*", serviceProvider);
 		URI resourceURI = EditUIUtil.getURI(getEditorInput());
 		Exception exception = null;
 		Resource resource = null;
@@ -90,7 +110,6 @@ public class ReflectiveXtextEditor extends EcoreEditor {
 
 	@Override
 	protected void initializeEditingDomain() {
-		System.out.println(resourceSet);
 		// Create an adapter factory that yields item providers.
 		//
 		adapterFactory = new ComposedAdapterFactory(
@@ -136,7 +155,6 @@ public class ReflectiveXtextEditor extends EcoreEditor {
 		// set
 		editingDomain = new AdapterFactoryEditingDomain(adapterFactory,
 				commandStack, resourceSet);
-		System.out.println(editingDomain.getResourceSet());
 	}
 
 }

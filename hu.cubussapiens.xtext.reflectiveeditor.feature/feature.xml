@@ -2,11 +2,13 @@
 <feature
       id="hu.cubussapiens.xtext.reflectiveeditor.feature"
       label="Xtext Reflective Editor"
-      version="0.5.0.qualifier"
-      provider-name="Zoltan Ujhelyi">
+      version="0.5.1.qualifier"
+      provider-name="Zoltan Ujhelyi"
+      license-feature="hu.cubussapiens.epl.feature"
+      license-feature-version="1.0.0.qualifier">
 
-   <description url="http://www.example.com/description">
-      [Enter Feature Description here.]
+   <description>
+      Simple plug-in for displaying the model contents of an Xtext resource in a tree viewer.
    </description>
 
    <copyright url="http://www.example.com/copyright">

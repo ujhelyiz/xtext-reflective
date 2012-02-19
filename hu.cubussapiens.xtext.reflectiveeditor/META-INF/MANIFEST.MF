@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Sample Reflective Editor for Xtext Models
 Bundle-SymbolicName: hu.cubussapiens.xtext.reflectiveeditor;singleton:=true
-Bundle-Version: 0.5.1.qualifier
+Bundle-Version: 0.5.2.qualifier
 Bundle-Vendor: Zoltan Ujhelyi
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Require-Bundle: org.eclipse.emf.ecore.editor;bundle-version="2.7.0";visibility:=reexport,

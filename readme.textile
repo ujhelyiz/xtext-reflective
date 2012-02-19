@@ -1,6 +1,6 @@
 h2. Reflective Editor for Xtext resources
 
-p. It is useful to open Xtext resources in EMF tree editors, e.g. in the Sample Reflective Ecore Model Editor. However, in several cases, e.g. when using XBase expressions, it is required to initialize a specific resource-set that initializes the Xtext environment.
+p. It is useful to open Xtext resources in EMF tree editors, e.g. in the Sample Reflective Ecore Model Editor. However, in several cases, e.g. when using Xbase expressions, it is required to initialize a specific resource-set that initializes the Xtext environment.
 
 p. This Xtext extension provides a generator fragment for Xtext workflows that adds this feature to existing languages.
 

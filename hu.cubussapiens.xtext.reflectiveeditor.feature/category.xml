@@ -6,5 +6,8 @@
    <feature url="features/hu.cubussapiens.xtext.reflectiveeditor.feature_0.5.1.qualifier.jar" id="hu.cubussapiens.xtext.reflectiveeditor.feature" version="0.5.1.qualifier">
       <category name="hu.cubussapiens.xtext"/>
    </feature>
+   <feature url="features/hu.cubussapiens.xtext.reflectiveeditor.feature_0.5.2.qualifier.jar" id="hu.cubussapiens.xtext.reflectiveeditor.feature" version="0.5.2.qualifier">
+      <category name="hu.cubussapiens.xtext"/>
+   </feature>
    <category-def name="hu.cubussapiens.xtext" label="Xtext tools"/>
 </site>

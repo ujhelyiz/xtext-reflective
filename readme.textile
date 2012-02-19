@@ -1,1 +1,27 @@
-h2. Reflective Editor for Xtext resourcesIt is useful to open Xtext resources in EMF tree editors, e.g. in the Sample Reflective Ecore Model Editor. However, in several cases, e.g. when using XBase expressions, it is required to initialize a specific resource-set that initializes the Xtext environment.This Xtext extension provides a generator fragment for Xtext workflows that adds this feature to existing languages.h3. Usage# Add @hu.cubussapiens.xtext.reflectiveeditor@ as a dependency to your language project. # Add @import hu.cubussapiens.xtext.reflectiveeditor.generator.*@ to the editor generation workflow.# Add the reflective editor generation fragment after the last fragment in your workflow file, as seen below.# Regenerate your editor# Make sure, that the new editor extension generated in @plugin.xml_gen@ is copied to @plugin.xml@. If not, copy it manually.# Then your model files can be opened with a specific, reflective editor. Use @Open with@ / @«Languagename» Reflective Editor@.h4. Reflective Editor Generator fragmentThe reflective editor generation fragment was created similar to existing fragments. The @file.extensions@ parameter is definedthe same way in the default Xtext 2.0 workflow file.bc. fragment = ReflectiveXtextEditorFragment {	fileExtensions = file.extensions}
+h2. Reflective Editor for Xtext resources
+
+p. It is useful to open Xtext resources in EMF tree editors, e.g. in the Sample Reflective Ecore Model Editor. However, in several cases, e.g. when using XBase expressions, it is required to initialize a specific resource-set that initializes the Xtext environment.
+
+p. This Xtext extension provides a generator fragment for Xtext workflows that adds this feature to existing languages.
+
+h3. Usage
+
+
+# Add @hu.cubussapiens.xtext.reflectiveeditor@ as a dependency to your language project. 
+# Add @import hu.cubussapiens.xtext.reflectiveeditor.generator.*@ to the editor generation workflow.
+# Add the reflective editor generation fragment after the last fragment in your workflow file, as seen below.
+# Regenerate your editor
+# Make sure, that the new editor extension generated in @plugin.xml_gen@ is copied to @plugin.xml@. If not, copy it manually.
+# Then your model files can be opened with a specific, reflective editor. Use @Open with@ / @«Languagename» Reflective Editor@.
+
+h4. Reflective Editor Generator fragment
+
+p. The reflective editor generation fragment was created similar to existing fragments. The @file.extensions@ parameter is defined
+the same way in the default Xtext 2.0 workflow file.
+
+bc. fragment = ReflectiveXtextEditorFragment {
+	fileExtensions = file.extensions
+}
+
+
+

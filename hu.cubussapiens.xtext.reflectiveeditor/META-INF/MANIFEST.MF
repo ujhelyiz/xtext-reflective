@@ -16,3 +16,5 @@ Require-Bundle: org.eclipse.emf.ecore.editor;bundle-version="2.7.0";visibility:=
  org.eclipse.xtext.xtext.ui;bundle-version="2.2.1"
 Export-Package: hu.cubussapiens.xtext.reflectiveeditor.editor,
  hu.cubussapiens.xtext.reflectiveeditor.generator
+Bundle-Activator: hu.cubussapiens.xtext.reflectiveeditor.XtextReflectiveEditorPlugin
+Bundle-ActivationPolicy: lazy

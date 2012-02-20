@@ -4,6 +4,8 @@ p. It is useful to open Xtext resources in EMF tree editors, e.g. in the Sample 
 
 p. This Xtext extension provides a generator fragment for Xtext workflows that adds this feature to existing languages.
 
+p. For more details, look at the "announcement blog post":http://cubussapiens.hu/2012/02/reflective-tree-editor-for-xtext-based-languages/
+
 h3. Usage
 
 

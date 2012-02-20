@@ -2,7 +2,7 @@
 <feature
       id="hu.cubussapiens.xtext.reflectiveeditor.feature"
       label="Xtext Reflective Editor"
-      version="0.5.2.qualifier"
+      version="0.5.3.qualifier"
       provider-name="Zoltan Ujhelyi"
       license-feature="hu.cubussapiens.epl.feature"
       license-feature-version="1.0.0.qualifier">

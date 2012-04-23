@@ -22,12 +22,14 @@ import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.xtext.Constants;
 import org.eclipse.xtext.resource.IResourceFactory;
 import org.eclipse.xtext.resource.IResourceServiceProvider;
 import org.eclipse.xtext.ui.guice.AbstractGuiceAwareExecutableExtensionFactory;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 
 import com.google.inject.Inject;
+import com.google.inject.name.Named;
 
 /**
  * An override of the EcoreEditor class that can open an Xtext model using a
@@ -47,19 +49,24 @@ public class ReflectiveXtextEditor extends EcoreEditor {
 	IResourceServiceProvider serviceProvider;
 	@Inject
 	IResourceSetProvider resourceSetProvider;
+	String extensions;
 
-	public ReflectiveXtextEditor() {
-		// The method is intentionally empty to avoid calling the
+	@Inject
+	public ReflectiveXtextEditor(@Named(Constants.FILE_EXTENSIONS) String extensions) {
+		// The super() intentionally not called to avoid calling the
 		// initializeEditingDomain before knowing the project
+		this.extensions = extensions;
 	}
 
 	@Override
 	public void init(IEditorSite site, IEditorInput editorInput) {
 		super.init(site, editorInput);
-		Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put("*",
+		for (String extension : extensions.split(",")) {
+			Resource.Factory.Registry.INSTANCE.getExtensionToFactoryMap().put(extension,
 				resourceFactory);
-		org.eclipse.xtext.resource.IResourceServiceProvider.Registry.INSTANCE
-				.getExtensionToFactoryMap().put("*", serviceProvider);
+			org.eclipse.xtext.resource.IResourceServiceProvider.Registry.INSTANCE
+				.getExtensionToFactoryMap().put(extension, serviceProvider);
+		}
 		IFile file = (IFile) editorInput.getAdapter(IFile.class);
 		this.resourceSet = resourceSetProvider.get(file.getProject());
 		initializeEditingDomain();
